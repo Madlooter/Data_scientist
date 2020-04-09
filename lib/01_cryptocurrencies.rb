@@ -16,5 +16,5 @@ puts "La valeur la moins élevée parmi les crypto est #{my_hash.values.min}. La
 
 puts "Le nombre de compte contenant coin est de #{my_hash.count { |k, _| k.to_s.include?('coin') }}"
 
-puts "Le nombre de devises en dessous de 6000 est de #{my_hash.count { |_,k| k.to_f < 6000}}"
+puts "Le nombre de devises en dessous de 6000 est de #{my_hash.count { |_,v| v.to_f < 6000}}"
 
