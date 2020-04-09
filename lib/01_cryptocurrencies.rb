@@ -7,6 +7,14 @@ value = ["$6558.07", "$468.95", "$0.487526", "$762.84", "$8.86", "$85.26", "$0.1
  "$0.042993", "$0.000325", "$0.000271", "$0.002799", "$0.071591", "$1.17", "$0.001171", "$0.000651", "$0.000195", "$0.001562", "$0.008721", "$0.000065", "$0.000130", "$0.002473", "$0.000065", "$0.000325", "$0.656235", "$0.000254", "$0.000518", "$0.000065", "$0.054733", "$9.85", "$0.000520", "$0.000259", "$0.003288", "$0.006578", "$0.004273", "$0.024932", "$0.011394"]
 
 
-my_hash = Hash[crypto.zip(value)]
+my_hash = Hash[crypto.zip(value)].transform_values!{|v|v[1, v.length].to_f}
 
-puts my_hash.max_by(&:last).last
+
+puts "La valeur la plus élevée parmi les crypto est #{my_hash.values.max}. La crypto correspondante est #{my_hash.key(my_hash.values.max)}"
+
+puts "La valeur la moins élevée parmi les crypto est #{my_hash.values.min}. La crypto correspondante est #{my_hash.key(my_hash.values.min)}"
+
+puts "Le nombre de compte contenant coin est de #{my_hash.count { |k, _| k.to_s.include?('coin') }}"
+
+puts "Le nombre de devises en dessous de 6000 est de #{my_hash.count { |_,k| k.to_f < 6000}}"
+
